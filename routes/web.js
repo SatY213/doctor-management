@@ -8,7 +8,7 @@ const diagnosticController = require("../controllers/diagnosticController");
 const prescriptionController = require("../controllers/prescriptionController");
 const blocController = require("../controllers/blocController");
 
-const irmController = require("../controllers/IrmController");
+const irmController = require("../controllers/irmController");
 
 const authenticate = require("../middleware/authMiddleware");
 const upload = require("../middleware/fileMiddleware");
