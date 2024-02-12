@@ -91,12 +91,12 @@ router.put(
 
 router.delete("/users/:id", authenticate, userController.deleteUser);
 
-router.get("/users/:id", userController.findUserById);
-router.get("/users", userController.findAllUsers);
+router.get("/users/:id", authenticate, userController.findUserById);
+router.get("/users", authenticate, userController.findAllUsers);
 /////////////////////////
 
 // Patient ROUTES
-router.post("/patients", patientController.createPatient);
+router.post("/patients", authenticate, patientController.createPatient);
 
 router.put(
   "/patients/:id",
@@ -107,12 +107,16 @@ router.put(
 
 router.delete("/patients/:id", authenticate, patientController.deletePatient);
 
-router.get("/patients/:id", patientController.findPatientById);
-router.get("/patients", patientController.findAllPatients);
+router.get("/patients/:id", authenticate, patientController.findPatientById);
+router.get("/patients", authenticate, patientController.findAllPatients);
 /////////
 
 // Diagnostic ROUTES
-router.post("/diagnostics", diagnosticController.createDiagnostic);
+router.post(
+  "/diagnostics",
+  authenticate,
+  diagnosticController.createDiagnostic
+);
 
 router.put(
   "/diagnostics/:id",
@@ -127,18 +131,35 @@ router.delete(
   diagnosticController.deleteDiagnostic
 );
 
-router.get("/diagnostics/:id", diagnosticController.findDiagnosticById);
-router.get("/diagnostics", diagnosticController.findAllDiagnostics);
-router.get("/diagnostics/id/:id", diagnosticController.findAllDiagnosticsById);
+router.get(
+  "/diagnostics/:id",
+  authenticate,
+  diagnosticController.findDiagnosticById
+);
+router.get(
+  "/diagnostics",
+  authenticate,
+  diagnosticController.findAllDiagnostics
+);
+router.get(
+  "/diagnostics/id/:id",
+  authenticate,
+  diagnosticController.findAllDiagnosticsById
+);
 router.get(
   "/diagnostics/bloc/id/:id",
+  authenticate,
   diagnosticController.findAllBlocsDiagnosticsById
 );
 
 /////////
 
 // Prescription ROUTES
-router.post("/prescriptions", prescriptionController.createPrescription);
+router.post(
+  "/prescriptions",
+  authenticate,
+  prescriptionController.createPrescription
+);
 
 router.put(
   "/prescriptions/:id",
@@ -153,17 +174,26 @@ router.delete(
   prescriptionController.deletePrescription
 );
 
-router.get("/prescriptions/:id", prescriptionController.findPrescriptionById);
-router.get("/prescriptions", prescriptionController.findAllPrescriptions);
+router.get(
+  "/prescriptions/:id",
+  authenticate,
+  prescriptionController.findPrescriptionById
+);
+router.get(
+  "/prescriptions",
+  authenticate,
+  prescriptionController.findAllPrescriptions
+);
 router.get(
   "/prescriptions/id/:id",
+  authenticate,
   prescriptionController.findAllPrescriptionsById
 );
 
 /////////
 
 // IRM ROUTES
-router.post("/irms", irmController.createIRM);
+router.post("/irms", authenticate, irmController.createIRM);
 
 router.put(
   "/irms/:id",
@@ -175,12 +205,12 @@ router.put(
 router.delete("/irms/:id", authenticate, irmController.deleteIRM);
 router.get("/irms/id/:id", irmController.findAllIrmsById);
 
-router.get("/irms/:id", irmController.findIRMById);
-router.get("/irms", irmController.findAllIRMs);
+router.get("/irms/:id", authenticate, irmController.findIRMById);
+router.get("/irms", authenticate, irmController.findAllIRMs);
 /////////
 
 // Bloc ROUTES
-router.post("/blocs", blocController.createBloc);
+router.post("/blocs", authenticate, blocController.createBloc);
 
 router.put(
   "/blocs/:id",
@@ -191,10 +221,10 @@ router.put(
 
 router.delete("/blocs/:id", authenticate, blocController.deleteBloc);
 
-router.get("/blocs/:id", blocController.findBlocById);
-router.get("/blocs/id/:id", blocController.findAllBlocsById);
+router.get("/blocs/:id", authenticate, blocController.findBlocById);
+router.get("/blocs/id/:id", authenticate, blocController.findAllBlocsById);
 
-router.get("/blocs", blocController.findAllBlocs);
+router.get("/blocs", authenticate, blocController.findAllBlocs);
 /////////
 
 module.exports = router;
