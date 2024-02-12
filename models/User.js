@@ -1,7 +1,5 @@
-// On importe le module mongoose
 const mongoose = require("mongoose");
 
-//On Crée le Schema de l'utilisateur
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -17,13 +15,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  money: { type: Number },
-  transactions: [
-    {
-      date: { type: Date, default: Date.now },
-      transactionQuantity: Number,
-    },
-  ],
+  role: {
+    type: String,
+    required: true,
+    enum: ["admin", "subscriber"],
+  },
 });
 
 const User = mongoose.model("User", userSchema);
