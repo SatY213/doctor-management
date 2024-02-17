@@ -130,6 +130,7 @@ exports.findAllPatients = async (req, res) => {
     const totalCount = await Patient.countDocuments(query);
     const totalPages = Math.ceil(totalCount / perPage);
     const patients = await Patient.find(query)
+      .sort({ createdAt: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage)
       .exec();

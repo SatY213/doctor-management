@@ -93,6 +93,7 @@ exports.findAllPrescriptions = async (req, res) => {
     const totalCount = await Prescription.countDocuments(query);
     const totalPages = Math.ceil(totalCount / perPage);
     const prescriptions = await Prescription.find(query)
+      .sort({ createdAt: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage)
       .populate("patientId")

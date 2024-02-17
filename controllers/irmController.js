@@ -85,6 +85,7 @@ exports.findAllIRMs = async (req, res) => {
     const totalCount = await Irm.countDocuments(query);
     const totalPages = Math.ceil(totalCount / perPage);
     const irms = await Irm.find(query)
+      .sort({ createdAt: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage)
       .populate("patientId") // Populate the patientId field to get patient details

@@ -88,6 +88,7 @@ exports.findAllDiagnostics = async (req, res) => {
     const totalCount = await Diagnostic.countDocuments(query);
     const totalPages = Math.ceil(totalCount / perPage);
     const diagnostics = await Diagnostic.find(query)
+      .sort({ createdAt: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage)
       .populate("patientId")

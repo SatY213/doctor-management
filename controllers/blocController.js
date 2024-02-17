@@ -82,6 +82,7 @@ exports.findAllBlocs = async (req, res) => {
     const totalCount = await Bloc.countDocuments(query);
     const totalPages = Math.ceil(totalCount / perPage);
     const blocs = await Bloc.find(query)
+      .sort({ createdAt: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage)
       .populate("patientId")

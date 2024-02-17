@@ -80,6 +80,7 @@ exports.findAllUsers = async (req, res) => {
     const totalCount = await User.countDocuments(query);
     const totalPages = Math.ceil(totalCount / perPage);
     const users = await User.find(query)
+      .sort({ createdAt: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage)
       .exec();
